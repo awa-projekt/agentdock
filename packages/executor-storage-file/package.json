@@ -1,0 +1,19 @@
+{
+  "name": "@executor-js/storage-file",
+  "version": "1.4.4-local",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@executor-js/sdk": "1.4.29",
+    "@executor-js/storage-core": "1.4.29",
+    "@executor-js/storage-drizzle": "workspace:*",
+    "drizzle-orm": "catalog:",
+    "effect": "catalog:"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

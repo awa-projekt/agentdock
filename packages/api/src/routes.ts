@@ -1,0 +1,15 @@
+export {
+  buildAgentA2aPath,
+  buildAgentA2aUrl,
+  buildAgentCardPath,
+  buildAgentCardUrl,
+  buildAgentPath,
+  buildAgentUrl,
+  buildWorkflowA2aPath,
+  buildWorkflowA2aUrl,
+  buildWorkflowCardPath,
+  buildWorkflowCardUrl,
+  buildWorkflowPath,
+  buildWorkflowUrl,
+  normalizeBaseUrl,
+} from 'agentdock-sdk/routes';

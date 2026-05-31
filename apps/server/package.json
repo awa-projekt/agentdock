@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node --import tsx src/index.ts",
+    "dev": "node --watch --no-warnings=ExperimentalWarning --import tsx src/index.ts"
+  },
+  "dependencies": {
+    "@effect/opentelemetry": "catalog:",
+    "@effect/platform-node": "catalog:",
+    "@opentelemetry/exporter-trace-otlp-http": "catalog:",
+    "@opentelemetry/sdk-trace-base": "catalog:",
+    "api": "workspace:*",
+    "dotenv": "catalog:",
+    "effect": "catalog:"
+  },
+  "devDependencies": {},
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

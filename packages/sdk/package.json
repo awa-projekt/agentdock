@@ -1,0 +1,27 @@
+{
+  "name": "agentdock-sdk",
+  "main": "./src/index.ts",
+  "module": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./api": "./src/api/index.ts",
+    "./api/client": "./src/api/client.ts",
+    "./api/http": "./src/api/http.ts",
+    "./api/schemas": "./src/api/schemas.ts",
+    "./routes": "./src/routes.ts",
+    "./workflows": "./src/workflows/index.ts"
+  },
+  "type": "module",
+  "dependencies": {
+    "@a2a-js/sdk": "^0.3.13",
+    "@ai-sdk/openai": "catalog:",
+    "ai": "catalog:",
+    "effect": "catalog:",
+    "uuid": "^13.0.0",
+    "zod": "catalog:"
+  },
+  "devDependencies": {},
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

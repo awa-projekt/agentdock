@@ -1,0 +1,22 @@
+{
+  "name": "db",
+  "main": "./src/index.ts",
+  "module": "index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./init": "./src/init.ts",
+    "./schema": "./src/schema.ts"
+  },
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@libsql/client": "catalog:",
+    "agentdock-sdk": "workspace:*",
+    "drizzle-orm": "catalog:",
+    "effect": "catalog:"
+  },
+  "devDependencies": {},
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

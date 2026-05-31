@@ -1,0 +1,78 @@
+{
+  "name": "agentdock",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "api": "node --watch --no-warnings=ExperimentalWarning --import tsx apps/server/src/index.ts",
+    "api:kill": "lsof -ti tcp:38123 | xargs -r kill",
+    "server": "node --watch --no-warnings=ExperimentalWarning --import tsx apps/server/src/index.ts",
+    "web": "node --watch --import tsx apps/web/src/index.ts",
+    "cli": "node --import tsx apps/cli/src/index.ts",
+    "db:seed": "node --import tsx scripts/seed-agents.ts",
+    "db:reset": "node --import tsx scripts/reset-db.ts",
+    "agent:test-endpoint": "curl -sS -X POST http://127.0.0.1:38123/agents/74ec798d/a2a -H \"content-type: application/json\" -d '{\"jsonrpc\":\"2.0\",\"id\":\"agent-test\",\"method\":\"message/send\",\"params\":{\"message\":{\"messageId\":\"agent-test-msg\",\"role\":\"user\",\"parts\":[{\"kind\":\"text\",\"text\":\"Say hi in two words.\"}]}}}'",
+    "prepare": "effect-language-service patch",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "overrides": {
+    "effect": "4.0.0-beta.59",
+    "@effect/opentelemetry": "4.0.0-beta.59",
+    "@effect/platform-node": "4.0.0-beta.59",
+    "@effect/platform-node-shared": "4.0.0-beta.59"
+  },
+  "catalog": {
+    "@a2a-js/sdk": "^0.3.13",
+    "@effect/opentelemetry": "4.0.0-beta.59",
+    "@effect/platform-node": "4.0.0-beta.59",
+    "@libsql/client": "^0.17.2",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.204.0",
+    "@opentelemetry/sdk-trace-base": "^2.1.0",
+    "@ai-sdk/openai": "^3.0.52",
+    "ai": "^6.0.156",
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "^0.45.2",
+    "effect": "4.0.0-beta.59",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@effect/language-service": "^0.85.1",
+    "@types/node": "^24.9.1",
+    "drizzle-kit": "^0.31.10",
+    "tsx": "^4.20.6",
+    "vitest": "^4.1.4"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@a2a-js/sdk": "^0.3.13",
+    "@ai-sdk/openai": "^3.0.52",
+    "@cfworker/json-schema": "^4.1.1",
+    "@effect/opentelemetry": "4.0.0-beta.59",
+    "@effect/platform-node": "4.0.0-beta.59",
+    "@executor-js/execution": "1.4.29",
+    "@executor-js/plugin-google-discovery": "1.4.29",
+    "@executor-js/plugin-graphql": "1.4.29",
+    "@executor-js/plugin-mcp": "1.4.29",
+    "@executor-js/plugin-openapi": "1.4.29",
+    "@executor-js/runtime-quickjs": "1.4.29",
+    "@executor-js/sdk": "1.4.29",
+    "@executor-js/storage-core": "1.4.29",
+    "@libsql/client": "^0.17.2",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.204.0",
+    "@opentelemetry/sdk-trace-base": "^2.1.0",
+    "@opentelemetry/sdk-trace-node": "^2.1.0",
+    "ai": "^6.0.156",
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "^0.45.2",
+    "effect": "4.0.0-beta.59",
+    "tiktoken": "^1.0.22",
+    "zod": "^4.3.6"
+  }
+}
