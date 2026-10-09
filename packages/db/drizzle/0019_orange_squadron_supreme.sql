@@ -1,0 +1,2 @@
+ALTER TABLE `workflow_revisions` ADD `graph` text DEFAULT '{"nodes":[],"edges":[]}' NOT NULL;--> statement-breakpoint
+ALTER TABLE `workflows` ADD `graph` text DEFAULT '{"nodes":[],"edges":[]}' NOT NULL;

@@ -1,0 +1,1 @@
+ALTER TABLE `executor_pinned_tool` RENAME TO `executor_native_tool`;

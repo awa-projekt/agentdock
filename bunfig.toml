@@ -1,0 +1,13 @@
+[install]
+minimumReleaseAge = 86400
+# bun 1.3.14 does not support "@scope/*" globs in excludes (the glob form in
+# ~/.bunfig.toml silently matches nothing), so list the exact packages.
+minimumReleaseAgeExcludes = [
+  "@mokronos/a2a-react",
+  "@integragents/contracts",
+  "@integragents/gateway-core",
+  "@integragents/host",
+  "@integragents/observability",
+  "@executor-js/codemode-core",
+  "@executor-js/runtime-quickjs",
+]

@@ -1,0 +1,16 @@
+{
+  "name": "Content publisher",
+  "description": "Drafts a post from a brief with the content-writer agent, pauses for a human to edit and approve it, then publishes the approved version through the publishing platform.",
+  "version": "1.0.0",
+  "graph": "./workflow.ts:default",
+  "agents": {
+    "content-writer": {
+      "description": "Given { brief, previousDraft?, feedback? } as JSON, returns the article { title, body, channel } as structured output."
+    }
+  },
+  "tools": {
+    "publish_post": {
+      "description": "Publishes an approved { title, body, channel } to the publishing platform and returns the public URL."
+    }
+  }
+}

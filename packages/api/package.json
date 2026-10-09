@@ -1,0 +1,44 @@
+{
+  "name": "api",
+  "main": "./index.ts",
+  "module": "index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./api": "./src/api.ts"
+  },
+  "type": "module",
+  "private": true,
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@a2a-js/sdk": "catalog:",
+    "@cfworker/json-schema": "catalog:",
+    "@better-auth/drizzle-adapter": "catalog:",
+    "@chat-adapter/discord": "catalog:",
+    "@chat-adapter/teams": "catalog:",
+    "@effect/platform-node": "catalog:",
+    "@effect/sql-libsql": "catalog:",
+    "@executor-js/codemode-core": "catalog:",
+    "@executor-js/runtime-quickjs": "catalog:",
+    "@langchain/core": "catalog:",
+    "@langchain/langgraph": "^1.4.5",
+    "@langchain/langgraph-checkpoint": "^1.1.2",
+    "@libsql/client": "catalog:",
+    "@modelcontextprotocol/sdk": "catalog:",
+    "@integragents/contracts": "catalog:",
+    "@integragents/gateway-core": "catalog:",
+    "@integragents/host": "catalog:",
+    "@types/semver": "catalog:",
+    "agentdock-sdk": "workspace:*",
+    "better-auth": "catalog:",
+    "chat": "catalog:",
+    "db": "workspace:*",
+    "drizzle-orm": "catalog:",
+    "effect": "catalog:",
+    "semver": "catalog:",
+    "tiktoken": "catalog:"
+  },
+  "devDependencies": {},
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

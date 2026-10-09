@@ -1,0 +1,11 @@
+{
+  "name": "Ticket triage",
+  "description": "Classifies a support ticket with a LangGraph agent, escalates high priority, otherwise drafts a reply through the bound writer agent.",
+  "version": "0.2.0",
+  "graph": "./workflow.ts:default",
+  "agents": {
+    "writer": {
+      "description": "Writes the customer-facing reply for a low-priority ticket. Receives the ticket text and category as one user message."
+    }
+  }
+}

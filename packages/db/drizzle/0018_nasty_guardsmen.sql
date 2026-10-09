@@ -1,0 +1,1 @@
+ALTER TABLE `graph_execution_events` ADD `request_id` text NOT NULL;

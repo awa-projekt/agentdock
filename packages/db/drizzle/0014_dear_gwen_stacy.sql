@@ -1,0 +1,1 @@
+ALTER TABLE `agents` ADD `harness` text DEFAULT 'deepagents' NOT NULL;

@@ -1,0 +1,1 @@
+ALTER TABLE `agents` ADD `input_contract` text;

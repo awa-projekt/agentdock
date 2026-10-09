@@ -1,0 +1,18 @@
+{
+  "name": "@agentdock/cli",
+  "type": "module",
+  "private": true,
+  "license": "Apache-2.0",
+  "devDependencies": {},
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@a2a-js/sdk": "catalog:",
+    "@effect/platform-node": "catalog:",
+    "@integragents/observability": "catalog:",
+    "agentdock-sdk": "workspace:*",
+    "effect": "catalog:",
+    "yaml": "catalog:"
+  }
+}

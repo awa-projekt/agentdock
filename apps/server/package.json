@@ -1,0 +1,29 @@
+{
+  "name": "server",
+  "type": "module",
+  "private": true,
+  "license": "Apache-2.0",
+  "scripts": {
+    "start": "node --import tsx src/index.ts",
+    "dev": "node --watch --no-warnings=ExperimentalWarning --import tsx src/index.ts"
+  },
+  "dependencies": {
+    "@effect/opentelemetry": "catalog:",
+    "@effect/platform-node": "catalog:",
+    "@integragents/contracts": "catalog:",
+    "@integragents/observability": "catalog:",
+    "@opentelemetry/api": "catalog:",
+    "@opentelemetry/exporter-trace-otlp-http": "catalog:",
+    "@opentelemetry/resources": "catalog:",
+    "@opentelemetry/sdk-trace-base": "catalog:",
+    "@opentelemetry/sdk-trace-node": "catalog:",
+    "api": "workspace:*",
+    "db": "workspace:*",
+    "dotenv": "catalog:",
+    "effect": "catalog:"
+  },
+  "devDependencies": {},
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

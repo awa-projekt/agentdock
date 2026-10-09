@@ -1,0 +1,48 @@
+@import "../styles/globals.css";
+
+/*
+ * Streamdown ships utility classes inside its dist bundle; tailwind does not
+ * scan node_modules by default, so register it as an explicit source.
+ */
+@source "../node_modules/streamdown/dist/*.js";
+
+@layer base {
+  :root {
+    @apply font-sans;
+  }
+
+  body {
+    @apply min-w-[320px] min-h-screen m-0 bg-background text-foreground;
+  }
+
+  #root {
+    @apply min-h-screen;
+  }
+}
+
+/* Chat surfaces: a shimmering "working" label. */
+@utility text-shimmer {
+  background:
+    linear-gradient(
+      90deg,
+      var(--muted-foreground) 0%,
+      var(--muted-foreground) 35%,
+      var(--foreground) 50%,
+      var(--muted-foreground) 65%,
+      var(--muted-foreground) 100%
+    )
+    0 0 / 250% 100%;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: text-shimmer 2s linear infinite;
+}
+
+@keyframes text-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -50% 0;
+  }
+}

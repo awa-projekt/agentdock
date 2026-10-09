@@ -1,0 +1,96 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Effect-TS/language-service/refs/heads/main/schema.json",
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM"],
+    "types": ["node"],
+    "target": "ES2022",
+    "module": "preserve",
+    "moduleDetection": "force",
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "rewriteRelativeImportExtensions": true,
+    "noEmit": true,
+    "incremental": true,
+    "composite": true,
+    "sourceMap": true,
+    "declarationMap": true,
+    "strict": true,
+    "exactOptionalPropertyTypes": true,
+    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
+    "paths": {
+      "@/*": ["apps/web/src/*"]
+    },
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "plugins": [
+      {
+        "name": "@effect/language-service",
+        "namespaceImportPackages": ["effect", "@effect/platform-node", "@effect/opentelemetry"],
+        "topLevelNamedReexports": "follow",
+        "diagnosticSeverity": {
+          "importFromBarrel": "error",
+          "anyUnknownInErrorContext": "error",
+          "unsafeEffectTypeAssertion": "error",
+          "instanceOfSchema": "error",
+          "deterministicKeys": "error",
+          "strictEffectProvide": "off",
+          "missingEffectServiceDependency": "error",
+          "leakingRequirements": "error",
+          "globalErrorInEffectCatch": "error",
+          "globalErrorInEffectFailure": "error",
+          "unknownInEffectCatch": "error",
+          "strictBooleanExpressions": "off",
+          "lazyEffect": "off",
+          "preferSchemaOverJson": "error",
+          "schemaSyncInEffect": "error",
+          "cryptoRandomUUID": "error",
+          "cryptoRandomUUIDInEffect": "error",
+          "nodeBuiltinImport": "error",
+          "globalDate": "error",
+          "globalDateInEffect": "error",
+          "globalConsole": "error",
+          "globalConsoleInEffect": "error",
+          "globalRandom": "error",
+          "globalRandomInEffect": "error",
+          "globalTimers": "error",
+          "globalTimersInEffect": "error",
+          "globalFetch": "error",
+          "globalFetchInEffect": "error",
+          "processEnv": "error",
+          "processEnvInEffect": "error",
+          "floatingEffect": "error",
+          "runEffectInsideEffect": "error",
+          "tryCatchInEffectGen": "error",
+          "missingStarInYieldEffectGen": "error",
+          "missingReturnYieldStar": "error"
+        }
+      }
+    ]
+  },
+  // apps/web is typechecked separately via its own tsconfig, which disables
+  // exactOptionalPropertyTypes for the vendored ai-elements/motion chat
+  // components. The root `typecheck` script delegates to it.
+  // The vendored anti-slop Oxlint plugin is tooling, not app source: Node strips
+  // its types at lint time and it does not compile under this project's stricter
+  // `exactOptionalPropertyTypes`.
+  "exclude": [
+    "node_modules",
+    "dist",
+    "public",
+    "apps/web",
+    "tools/oxlint/anti-slop",
+    // Standalone example projects with their own lockfiles and tsconfigs; they
+    // are not workspace members and their dependencies are not installed here.
+    "apps/examples/content-publisher",
+    "apps/examples/workflows"
+  ]
+}

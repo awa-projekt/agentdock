@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --color-canvas: #f6f7fb;
+  --color-ink: #16181d;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Rendered-markdown preview */
+.prose-mini h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.6em 0 0.3em;
+}
+.prose-mini h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0.6em 0 0.3em;
+}
+.prose-mini h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0.6em 0 0.3em;
+}
+.prose-mini p {
+  margin: 0.5em 0;
+  line-height: 1.65;
+}
+.prose-mini ul,
+.prose-mini ol {
+  margin: 0.5em 0;
+  padding-left: 1.4em;
+}
+.prose-mini li {
+  margin: 0.2em 0;
+  line-height: 1.6;
+}
+.prose-mini a {
+  color: #4f46e5;
+  text-decoration: underline;
+}
+.prose-mini code {
+  background: #eceef3;
+  padding: 0.1em 0.35em;
+  border-radius: 0.3em;
+  font-size: 0.9em;
+}
+.prose-mini strong {
+  font-weight: 700;
+}

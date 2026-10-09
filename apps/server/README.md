@@ -1,0 +1,15 @@
+# server
+
+To install dependencies:
+
+```bash
+bun install
+```
+
+To run:
+
+```bash
+bun run dev
+```
+
+Package management uses Bun, while runtime execution uses Node.js.

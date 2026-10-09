@@ -1,0 +1,1 @@
+ALTER TABLE `agent_runs` ADD `parent_task_id` text;

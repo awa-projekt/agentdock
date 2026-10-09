@@ -1,0 +1,69 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+extensions:
+  # Credentials default to the keys auto-provisioned via LANGFUSE_INIT_* in compose.yaml.
+  basicauth/langfuse:
+    client_auth:
+      username: ${env:LANGFUSE_PUBLIC_KEY:-pk-lf-agentdock-dev}
+      password: ${env:LANGFUSE_SECRET_KEY:-sk-lf-agentdock-dev}
+
+processors:
+  batch:
+  # Langfuse only gets the agent spans AgentDock emits for LangGraph runs
+  # (agentdock.langgraph.chain / .llm / .tool.*); the full traces (app + LLM)
+  # stay in Tempo.
+  filter/llm:
+    error_mode: ignore
+    traces:
+      span:
+        - not (IsMatch(name, "^agentdock\\.langgraph\\..*"))
+  # The filter above drops the app spans an agent run descends from, leaving
+  # Langfuse without a root span to derive the trace name/input/output from.
+  # Clear the parent of the root graph span (the only chain span AgentDock
+  # records) so Langfuse treats it as the root and promotes its I/O to the trace.
+  transform/llm-root:
+    error_mode: ignore
+    trace_statements:
+      - context: span
+        statements:
+          - set(parent_span_id, SpanID(0x0000000000000000)) where name == "agentdock.langgraph.chain"
+
+exporters:
+  debug:
+    verbosity: detailed
+  otlp:
+    endpoint: tempo:4317
+    tls:
+      insecure: true
+  otlphttp/langfuse:
+    endpoint: http://langfuse:3000/api/public/otel
+    auth:
+      authenticator: basicauth/langfuse
+
+service:
+  extensions:
+    - basicauth/langfuse
+  pipelines:
+    traces:
+      receivers:
+        - otlp
+      processors:
+        - batch
+      exporters:
+        - debug
+        - otlp
+    traces/langfuse:
+      receivers:
+        - otlp
+      processors:
+        - filter/llm
+        - transform/llm-root
+        - batch
+      exporters:
+        - otlphttp/langfuse

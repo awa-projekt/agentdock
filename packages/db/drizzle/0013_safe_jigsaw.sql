@@ -1,0 +1,1 @@
+ALTER TABLE `agent_runs` ADD `status_history` text;

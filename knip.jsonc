@@ -1,0 +1,33 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  // Exported types are contracts even before they have consumers.
+  "rules": { "types": "off", "nsTypes": "off" },
+  "workspaces": {
+    ".": {
+      "project": ["*.{js,mjs,cjs,ts,mts,cts}", "scripts/**/*.ts"],
+      "entry": ["scripts/*.ts!"],
+      // The host-provided packages, declared like an agentdock project's, so workflow artifacts inside the
+      // repository (apps/examples/workflows) resolve them from the repo root.
+      "ignoreDependencies": ["agentdock-patterns", "@langchain/core", "@langchain/langgraph", "langchain"]
+    },
+    "apps/web": {
+      "entry": ["src/frontend.tsx!", "src/app.css!", "src/index.css!", "styles/*.css!"],
+      // The dev server runs the Tailwind CLI binary by filesystem path.
+      "ignoreDependencies": ["@tailwindcss/cli"],
+      // shadcn primitives are vendored as cohesive modules; keep their named subcomponents.
+      "ignoreIssues": {
+        "src/components/ui/*.tsx": ["exports", "nsExports", "duplicates"]
+      }
+    },
+    // Its own entry, as before: its entry exports stay outside the `packages/*` check.
+    "packages/api": {},
+    // A library for workflow artifacts, which live outside this repository: its entry exports are its API.
+    "packages/patterns": { "includeEntryExports": false },
+    "packages/sdk": {
+      "includeEntryExports": true,
+      // Artifacts import it; the runtime only resolves it by name to link and version-check it.
+      "ignoreDependencies": ["agentdock-patterns"]
+    },
+    "packages/*": { "includeEntryExports": true }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Weekly market brief",
+  "description": "Researches each competitor in parallel, pauses for outline sign-off, then writes the brief.",
+  "version": "1.1.0",
+  "graph": "./workflow.ts:default",
+  "input": {
+    "type": "object",
+    "required": ["week", "competitors"],
+    "properties": {
+      "week": { "type": "integer", "minimum": 1, "maximum": 53 },
+      "competitors": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+    }
+  },
+  "agents": {
+    "research": {
+      "description": "Given { competitor, week, instruction } as JSON, returns a finding { competitor, headline, impact } — as structured output or as the JSON text of its last message."
+    },
+    "writer": {
+      "description": "Given { week, outline, findings, instruction } as JSON, returns the brief as text."
+    }
+  }
+}
